@@ -1,6 +1,6 @@
 import React from "react";
-
-const Header = () => {
+import { Link, Outlet } from "react-router-dom";
+const PanelHeader = () => {
   return (
     <nav className="bg-white shadow-md shadow-violet-900 ">
       <div className="px-5 flex flex-wrap items-center justify-between mx-auto">
@@ -65,44 +65,41 @@ const Header = () => {
               fill="#5F2AA2"
             />
           </svg>
-          <span className="self-center whitespace-nowrap text-violet-900">
-            <h1> فروشگاه آماتیس</h1>
-          </span>
+          <Link to="/" className="link">
+            <span className="self-center whitespace-nowrap text-violet-900">
+              <h1> پنل مدیریت فروشگاه آماتیس </h1>
+            </span>
+          </Link>
         </div>
         <div className="flex items-center">
-          <div className="relative ml-2 ">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                className="w-5 h-5 text-violet-900"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </div>
-            <input
-              type="text"
-              id="search-navbar"
-              className="block w-full p-2 pl-10 border-2 border-violet-900 text-violet-900 rounded-lg"
-              placeholder="دنبال چی میگردی؟"
-            />
+          <div className="flex border ml-2 ">
+            <Link to="/panel/products" className="link">
+              <div className=" px-5 py-4">
+                <h5>کالا ها</h5>
+              </div>
+            </Link>
+            <Link to="/panel/quantity" className="link">
+              <div className="border-x px-5 py-4">
+                <h5>موجودی و قیمت ها </h5>
+              </div>
+            </Link>
+            <Link to={"/panel/orders"} className="link">
+              <div className="px-5 py-4">
+                <h5> سفارش ها</h5>
+              </div>
+            </Link>
           </div>
-          <span className=" text-violet-900">
-            <h3>مدیریت</h3>
-          </span>
-          <span className=" text-violet-900">
-            <h3>سبد خرید</h3>
-          </span>
+
+          <Link to={"/"} className="link">
+            <span>
+              <h3 className="m-4">بازگشت به سایت</h3>
+            </span>
+          </Link>
         </div>
       </div>
+      <Outlet />
     </nav>
   );
 };
 
-export default Header;
+export default PanelHeader;

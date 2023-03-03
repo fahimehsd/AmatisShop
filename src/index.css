@@ -5,8 +5,26 @@
   margin: 0;
   padding: 0;
   direction: rtl;
-  font-family: "Arabic Typesetting", sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  /* font-family: "Arabic Typesetting", sans-serif; */
 }
-h3 {
-  margin-inline: 1rem;
+
+input {
+  border: 1px solid silver;
+  border-radius: 5px;
+  width: 100%;
+  padding: 0.5rem;
+}
+input:placeholder-shown {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.p {
+  margin-bottom: 0;
+}
+.h5 {
+  margin-bottom: 0;
+}
+.link {
+  text-decoration: 0;
 }
