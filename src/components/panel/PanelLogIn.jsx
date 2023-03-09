@@ -5,10 +5,10 @@ import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 
 const signInSchema = Yup.object().shape({
-  username: Yup.string().required("نام کاربری الزامی است."),
+  username: Yup.string().required("   Username is required."),
   password: Yup.string()
-    .required("رمز عبور الزامی است.")
-    .min(4, "رمز عبور کوتاه است!")
+    .required("Password is required.   ")
+    .min(4, "Password must be at least 4 characters.")
 });
 
 const initialValues = {
@@ -24,78 +24,86 @@ const PanelLogIn = () => {
     navigate("/panel");
   };
   return (
-    <div className="w-[60%] mx-auto my-[150px] text-center p-4 shadow rounded-md">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={signInSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        {(formik) => {
-          const { errors, touched, isValid, dirty } = formik;
-          return (
-            <div>
-              <h1 className=" text-violet-900 font-semibold">
-                ورود به پنل مدیریت فروشگاه آماتیس
-              </h1>
-              <Form onSubmit={submitHandler}>
-                <div className="my-4">
-                  <Field
-                    type="text"
-                    name="username"
-                    id="username"
-                    placeholder="نام کاربری"
-                    className={
-                      errors.username && touched.username
-                        ? " border-red-900"
-                        : null
-                    }
-                  />
-                  <ErrorMessage
-                    name="username"
-                    component="span"
-                    className=" text-red-900 font-bold"
-                  />
-                </div>
+    <div className=" flex">
+      <div className="w-1/2 p-28 bg-gradient-to-r from-fuchsia-900 via-pink-300 to-fuchsia-900">
+        <h1 className="text-center">
+          Fragrances are powerful magicians that can transport you through the
+          years you have lived
+        </h1>
+      </div>
+      <div className="w-1/2 p-20 text-center ">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={signInSchema}
+          onSubmit={(values) => {
+            console.log(values);
+          }}
+        >
+          {(formik) => {
+            const { errors, touched, isValid, dirty } = formik;
+            return (
+              <div>
+                <h1 className=" text-fuchsia-900 font-bold">
+                  Log In To Management Panel
+                </h1>
+                <Form onSubmit={submitHandler}>
+                  <div className="my-4">
+                    <Field
+                      type="text"
+                      name="username"
+                      id="username"
+                      placeholder="Username "
+                      className={
+                        errors.username && touched.username
+                          ? " border-red-900"
+                          : null
+                      }
+                    />
+                    <ErrorMessage
+                      name="username"
+                      component="span"
+                      className=" text-red-900 font-bold"
+                    />
+                  </div>
 
-                <div className="mb-4">
-                  <Field
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="رمز عبور"
-                    className={
-                      errors.password && touched.password
-                        ? " border-red-900"
-                        : null
-                    }
-                  />
-                  <ErrorMessage
-                    name="password"
-                    component="span"
-                    className="text-red-900 font-bold"
-                  />
-                </div>
+                  <div className="mb-4">
+                    <Field
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="Password "
+                      className={
+                        errors.password && touched.password
+                          ? " border-red-900"
+                          : null
+                      }
+                    />
+                    <ErrorMessage
+                      name="password"
+                      component="span"
+                      className="text-red-900 font-bold"
+                    />
+                  </div>
 
-                <button
-                  type="submit"
-                  className="bg-violet-900 w-full rounded-[5px] text-white p-[0.5rem] text-2xl"
-                  disabled={!(dirty && isValid)}
-                >
-                  ورود
-                </button>
-              </Form>
-            </div>
-          );
-        }}
-      </Formik>
-      <Link
-        to={"/"}
-        className="flex justify-end mt-4 decoration-transparent text-2xl"
-      >
-        بازگشت به سایت
-      </Link>
+                  <button
+                    type="submit"
+                    className="bg-gradient-to-r  from-fuchsia-900 via-pink-300 to-fuchsia-900 w-full rounded-[5px] text-white p-[0.5rem] text-2xl"
+                    disabled={!(dirty && isValid)}
+                  >
+                    Log In
+                  </button>
+                </Form>
+              </div>
+            );
+          }}
+        </Formik>
+        <Link
+          to={"/"}
+          className="flex justify-center mt-4 decoration-transparent text-2xl"
+        >
+          Back to Home
+        </Link>
+      </div>
     </div>
   );
 };

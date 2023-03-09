@@ -1,7 +1,7 @@
 import React from "react";
 
 const PanelQuantityEdit = () => {
-  return <div>PanelQuantityEdit</div>;
+  return <div></div>;
 };
 
 export default PanelQuantityEdit;

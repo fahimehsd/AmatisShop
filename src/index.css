@@ -1,12 +1,37 @@
 @tailwind base;
+@layer base {
+  /* h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  } */
+  ul {
+    @apply pl-0;
+  }
+  td {
+    @apply m-4;
+  }
+}
 @tailwind components;
 @tailwind utilities;
 * {
   margin: 0;
   padding: 0;
-  direction: rtl;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Times New Roman", Times, serif;
+
+  /* font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif; */
   /* font-family: "Arabic Typesetting", sans-serif; */
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
 }
 
 input {
@@ -15,9 +40,8 @@ input {
   width: 100%;
   padding: 0.5rem;
 }
-input:placeholder-shown {
-  font-size: 1.2rem;
-  font-weight: 500;
+section {
+  direction: rtl;
 }
 .p {
   margin-bottom: 0;
@@ -27,4 +51,43 @@ input:placeholder-shown {
 }
 .link {
   text-decoration: 0;
+}
+.home-bg {
+  background-color: rgba(68, 17, 87, 0.078);
+  padding-inline: 1.5rem;
+  height: 100vh;
+}
+.panel-bg {
+  background-color: rgba(68, 17, 87, 0.078);
+  padding-inline: 1.5rem;
+  height: 100%;
+}
+.ul {
+  padding: 0;
+}
+.tr {
+  border-bottom: 1px solid gray;
+  text-align: center;
+}
+.modal {
+  border: 1px solid #e5e5e5;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+.backdrop {
+  position: fixed;
+  z-index: 1040;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  opacity: 0.85;
+}
+.input {
+  border: 0;
+  background-color: transparent;
+  width: 150px;
+  text-align: center;
 }

@@ -1,7 +1,12 @@
 import React from "react";
+import Header from "../../layouts/Header";
 
-const index = () => {
-  return <div>index</div>;
+const SubCategoriesIndex = () => {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
 
-export default index;
+export default SubCategoriesIndex;

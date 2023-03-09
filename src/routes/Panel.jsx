@@ -1,9 +1,10 @@
 import React from "react";
+
 import PanelHeader from "../layouts/PanelHeader";
 
 const Panel = () => {
   return (
-    <div>
+    <div className="panel-bg">
       <PanelHeader />
     </div>
   );
