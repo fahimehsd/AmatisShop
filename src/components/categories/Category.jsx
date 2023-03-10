@@ -10,7 +10,6 @@ const Category = () => {
   useEffect(() => {
     axios
       .get(`${BASE_URL}/subcategory`)
-
       .then((res) => setSubCategory(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -27,7 +26,10 @@ const Category = () => {
     return subCategory.map((category) => {
       return (
         <li key={category.id}>
-          <Link to={`/products/${category.name}`} className="link">
+          <Link
+            to={`/products/${category.name}`}
+            className="link text-fuchsia-600"
+          >
             {category.name}
           </Link>
         </li>
@@ -38,11 +40,14 @@ const Category = () => {
     return category.map((category) => {
       return (
         <div key={category.id} className="mx-10">
-          <Link to={`/subcategory/${category.id}`} className="link">
+          <Link
+            to={`/subcategory/${category.id}`}
+            className="link text-fuchsia-900"
+          >
             <h1>{category.name}</h1>
           </Link>
           <div>
-            <ul className="ul">{subCategories()}</ul>
+            <ul className="ul ">{subCategories()}</ul>
           </div>
         </div>
       );

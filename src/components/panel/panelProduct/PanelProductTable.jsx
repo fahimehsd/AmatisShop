@@ -48,7 +48,7 @@ function PanelProductTable() {
                   <td>{item.id}</td>
                   <td className="flex justify-center">
                     <img
-                      className="w-20 h-26 bg-white my-3 "
+                      className="w-20 h-26 bg-white my-3 p-2 "
                       src={item.image[0]}
                       alt="pic"
                     />

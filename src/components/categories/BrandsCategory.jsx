@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../sample_front/configs/variables.config";
-import CategoryTitle from "./Category";
+
 const BrandsCategory = () => {
   const [subCategory, setSubCategory] = useState([]);
   useEffect(() => {
@@ -17,7 +17,10 @@ const BrandsCategory = () => {
     return subCategory.map((category) => {
       return (
         <li key={category.id}>
-          <Link to={`/brands/${category.id}`} className="link">
+          <Link
+            to={`/brands/${category.id}`}
+            className="link text-fuchsia-600 "
+          >
             {category.brand}
           </Link>
         </li>
@@ -26,7 +29,7 @@ const BrandsCategory = () => {
   };
   return (
     <div className="mx-10">
-      <Link to={"/brands"} className="link">
+      <Link to={"/brands"} className="link text-fuchsia-900">
         <h1>BRANDS</h1>
       </Link>
       <div>

@@ -14,7 +14,7 @@ import PanelQuantity from "./components/panel/panelQuantitiy/PanelQuantity";
 import PanelOrders from "./components/panel/panelOrder/PanelOrders";
 import store from "./app/store";
 import SubCategoriesIndex from "./components/subCategories/Index";
-
+import { Auth0Provider } from "@auth0/auth0-react";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const router = createBrowserRouter([
@@ -67,7 +67,13 @@ const router = createBrowserRouter([
 root.render(
   <Provider store={store}>
     <RouterProvider router={router}>
-      <App />
+      <Auth0Provider
+        domain="dev-mf6lqfng.us.auth0.com"
+        clientId="5c1HQIOd6HlVEi2CLLfTPO7HCImJ9qZr"
+        redirectUri={window.location.origin}
+      >
+        <App />
+      </Auth0Provider>
     </RouterProvider>
   </Provider>
 );

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link, useNavigate } from "react-router-dom";
 
 const signInSchema = Yup.object().shape({
@@ -23,15 +23,16 @@ const PanelLogIn = () => {
     e.preventDefault();
     navigate("/panel");
   };
+
   return (
-    <div className=" flex">
-      <div className="w-1/2 p-28 bg-gradient-to-r from-fuchsia-900 via-pink-300 to-fuchsia-900">
+    <div className="flex h-screen">
+      <div className="w-1/2 py-72 px-20 bg-gradient-to-r from-fuchsia-900 to-pink-100 ">
         <h1 className="text-center">
           Fragrances are powerful magicians that can transport you through the
           years you have lived
         </h1>
       </div>
-      <div className="w-1/2 p-20 text-center ">
+      <div className="w-1/2 p-20 py-52 text-center ">
         <Formik
           initialValues={initialValues}
           validationSchema={signInSchema}
@@ -65,7 +66,6 @@ const PanelLogIn = () => {
                       className=" text-red-900 font-bold"
                     />
                   </div>
-
                   <div className="mb-4">
                     <Field
                       type="password"
@@ -87,7 +87,7 @@ const PanelLogIn = () => {
 
                   <button
                     type="submit"
-                    className="bg-gradient-to-r  from-fuchsia-900 via-pink-300 to-fuchsia-900 w-full rounded-[5px] text-white p-[0.5rem] text-2xl"
+                    className="bg-gradient-to-l from-fuchsia-900 to-pink-100 w-full rounded-[5px] text-white p-[0.5rem] text-2xl"
                     disabled={!(dirty && isValid)}
                   >
                     Log In
