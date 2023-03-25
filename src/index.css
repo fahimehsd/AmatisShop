@@ -97,3 +97,43 @@ section {
   width: 150px;
   text-align: center;
 }
+.login-bg {
+  position: relative;
+  height: 100vh;
+}
+.login-bg::before {
+  content: "";
+  background-image: linear-gradient(
+      to right,
+      rgba(171, 127, 166, 0.248),
+      rgba(168, 73, 124, 0.4)
+    ),
+    url(./assets/login.jpg);
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(2px);
+}
+.login {
+  background-color: rgba(168, 73, 124, 0.4);
+  width: 400px;
+  border-radius: 15px;
+}
+.login-input {
+  background-color: transparent;
+  border-inline: 0;
+  border-top: 0;
+  border-color: white;
+  outline: none;
+}
+.login-input::placeholder {
+  color: rgba(155, 12, 88, 0.667);
+}
+.login-btn {
+  border: 0;
+  margin-top: 2rem;
+  background-color: rgba(155, 12, 88, 0.667);
+}

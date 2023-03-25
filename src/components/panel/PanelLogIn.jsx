@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { loginService } from "../../api";
-
+import bg from "../../assets/login.jpg";
 const signInSchema = Yup.object().shape({
   username: Yup.string().required("Username is required."),
   password: Yup.string()
@@ -34,34 +34,38 @@ const PanelLogIn = () => {
   };
 
   return (
-    <div className=" flex  justify-end h-screen bg-gradient-to-r from-fuchsia-900 to-pink-100 ">
-      <div className=" flex flex-col justify-center p-32 w-1/2 text-center ">
+    <div className="login-bg flex items-center justify-center">
+      <div className="login relative flex flex-col justify-center p-5 text-center ">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h1 className=" text-fuchsia-900 font-bold mb-4">
+          <h1 className=" text-gray-100 font-bold mb-4">
             Log In To Management Panel
           </h1>
           <input
             {...register("username")}
             placeholder="Username"
-            className={errors.password ? "border-[1px] border-red-900" : null}
+            className={
+              errors.password ? "border-[1px] border-red-900" : "login-input"
+            }
           />
           <p className=" text-red-900 font-bold">{errors.username?.message}</p>
 
           <input
             {...register("password")}
             placeholder="Password"
-            className={errors.password ? "border-[1px] border-red-900" : null}
+            className={
+              errors.password ? "border-[1px] border-red-900" : "login-input"
+            }
           />
           <p className=" text-red-900 font-bold">{errors.password?.message}</p>
 
           <input
             type="submit"
-            className="bg-gradient-to-l from-fuchsia-900 to-pink-100 w-full rounded-[5px] text-white p-[0.5rem] text-2xl"
+            className="login-btn w-full rounded-[5px] text-white p-[0.5rem] text-2xl"
           />
         </form>
         <Link
           to={"/"}
-          className="flex justify-center mt-4 decoration-transparent text-2xl"
+          className="flex text-gray-100 justify-center mt-4 decoration-transparent text-2xl"
         >
           Back to Home
         </Link>
