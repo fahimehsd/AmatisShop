@@ -1,7 +1,14 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { instance } from "../api";
 
 const Header = () => {
+  useEffect(() => {
+    instance.get("/protection").then((res) => {
+      console.log(res);
+    });
+  }, []);
+
   return (
     <div className=" bg-transparent border-b border-gray-500 p-3">
       <div className=" flex flex-wrap items-center justify-between mx-auto">
@@ -84,7 +91,7 @@ const Header = () => {
               placeholder="what are you looking for?"
             />
           </div>
-          <Link to={"/admin"} className="decoration-transparent">
+          <Link to={"/auth"} className="decoration-transparent">
             <span className=" text-gray-500">
               <h3 className="m-4">Management</h3>
             </span>

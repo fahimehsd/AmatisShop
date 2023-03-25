@@ -57,6 +57,12 @@ section {
   padding-inline: 1.5rem;
   height: 100vh;
 }
+.home-footer {
+  background-color: rgba(68, 17, 87, 0.078);
+  padding-inline: 15rem;
+  padding-block: 2rem;
+  height: fit-content;
+}
 .panel-bg {
   background-color: rgba(68, 17, 87, 0.078);
   padding-inline: 1.5rem;

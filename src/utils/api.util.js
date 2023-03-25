@@ -11,7 +11,29 @@ export const PagedProductReq = async (params) => {
     return {
       products: response.data,
       count: count,
-      queryParams: params.toString()
+      queryParams: params.toString(),
+      allData: allData
+    };
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+export const urlReq = async (req) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/${req}`);
+    return {
+      data: response.data
+    };
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+export const urlParam = async (req, param) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/${req}?${param}`);
+    return {
+      data: response.data
     };
   } catch (e) {
     console.log(e.message);
