@@ -1,5 +1,5 @@
 import React from "react";
-import BrandsCategory from "./BrandsCategory";
+import BrandsCategory from "./brands/BrandsCategory";
 import Category from "./Category";
 
 const Categories = () => {

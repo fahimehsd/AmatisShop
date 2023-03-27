@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { urlReq } from "../../utils/api.util";
-import brandBg from "../../assets/bg.jpg";
+import { urlReq } from "../../../utils/api.util";
+import brandBg from "../../../assets/bg.jpg";
 const BrandsCategory = () => {
   const [subCategory, setSubCategory] = useState([]);
   useEffect(() => {

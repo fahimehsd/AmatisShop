@@ -13,6 +13,9 @@ import PanelOrders from "./components/panel/panelOrder/PanelOrders";
 import SubCategoriesIndex from "./components/subCategories/Index";
 import AllProducts from "./components/subCategories/AllProducts";
 import ProductInfo from "./components/productInfo/ProductInfo";
+import BrandsCategory from "./components/categories/brands/BrandsCategory";
+import BrandsProducts from "./components/categories/brands/BrandsProducts";
+import EachBrandsProducts from "./components/categories/brands/EachBrandsProducts";
 
 const MainPage = lazy(() => import("./routes/MainPage"));
 
@@ -100,7 +103,7 @@ const App = () => {
         path="/brands"
         element={
           <Suspense fallback={<Loading />}>
-            <SubCategoriesIndex />
+            <BrandsProducts />
           </Suspense>
         }
       />
@@ -108,7 +111,7 @@ const App = () => {
         path="/brands/:brandsName"
         element={
           <Suspense fallback={<Loading />}>
-            <SubCategoriesIndex />
+            <EachBrandsProducts />
           </Suspense>
         }
       />
@@ -138,6 +141,14 @@ const App = () => {
       />
       <Route
         path="/products/:categoryName/:name"
+        element={
+          <Suspense fallback={<Loading />}>
+            <ProductInfo />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/products/:name"
         element={
           <Suspense fallback={<Loading />}>
             <ProductInfo />
