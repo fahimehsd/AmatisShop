@@ -28,7 +28,7 @@ const Category = () => {
           {category.name === "WOMEN" ? (
             <div
               key={category.id}
-              className="bg-accent-dark bg-cover mx-10 flex flex-col items-center border-[1px] border-blue-900 p-3 w-[400px] h-[400px] shadow-md"
+              className="bg-accent-dark bg-cover mx-10 flex flex-col items-center border-[1px] border-blue-900 p-3 w-[400px] h-[400px] shadow-md hover:-translate-y-1 hover:scale-110 duration-300"
               style={{
                 backgroundImage: `url(${women})`
               }}
@@ -46,7 +46,7 @@ const Category = () => {
           ) : (
             <div
               key={category.id}
-              className="bg-accent-dark bg-cover mx-10 flex flex-col items-center border-[1px] border-cyan-800 p-3 w-[400px] h-[400px] shadow-md"
+              className="bg-accent-dark bg-cover mx-10 flex flex-col items-center border-[1px] border-cyan-800 p-3 w-[400px] h-[400px] shadow-md  hover:-translate-y-1 hover:scale-110 duration-300"
               style={{
                 backgroundImage: `url(${men})`
               }}

@@ -16,7 +16,7 @@ const SubCategoriesProducts = ({ categoryName }) => {
       return (
         <div
           key={item.id}
-          className="p-4 mx-5 mt-5 border-img bg w-[18rem] h-[25rem] flex flex-col items-center shadow-md rounded-md"
+          className="p-4 mx-5 mt-5 border-img bg w-[18rem] h-[25rem] flex flex-col items-center shadow-md rounded-md hover:scale-105 "
         >
           <Link
             to={`/products/${categoryName}/${item.name}`}

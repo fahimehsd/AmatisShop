@@ -33,7 +33,7 @@ const BrandsCategory = () => {
   };
   return (
     <div
-      className="bg-accent-dark bg-cover  mx-10 flex flex-col items-center border-[1px] border-fuchsia-900 p-3 w-[400px] h-[400px] shadow-md"
+      className="bg-accent-dark bg-cover  mx-10 flex flex-col items-center border-[1px] border-fuchsia-900 p-3 w-[400px] h-[400px] shadow-md  hover:-translate-y-1 hover:scale-110 duration-300"
       style={{
         backgroundImage: `url(${brandBg})`
       }}
