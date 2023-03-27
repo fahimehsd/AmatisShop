@@ -11,6 +11,9 @@ import PanelProduct from "./components/panel/panelProduct/PanelProduct";
 import PanelQuantity from "./components/panel/panelQuantitiy/PanelQuantity";
 import PanelOrders from "./components/panel/panelOrder/PanelOrders";
 import SubCategoriesIndex from "./components/subCategories/Index";
+import AllProducts from "./components/subCategories/AllProducts";
+import ProductInfo from "./components/productInfo/ProductInfo";
+
 const MainPage = lazy(() => import("./routes/MainPage"));
 
 const App = () => {
@@ -109,19 +112,19 @@ const App = () => {
           </Suspense>
         }
       />
-      <Route
+      {/* <Route
         path="/category"
         element={
           <Suspense fallback={<Loading />}>
             <SubCategoriesIndex />
           </Suspense>
         }
-      />
+      /> */}
       <Route
         path="/category/:categoryName"
         element={
           <Suspense fallback={<Loading />}>
-            <SubCategoriesIndex />
+            <AllProducts />
           </Suspense>
         }
       />
@@ -133,6 +136,23 @@ const App = () => {
           </Suspense>
         }
       />
+      <Route
+        path="/products/:categoryName/:name"
+        element={
+          <Suspense fallback={<Loading />}>
+            <ProductInfo />
+          </Suspense>
+        }
+      />
+
+      {/* <Route
+        path="/category/:categoryName/:subcategoryName"
+        element={
+          <Suspense fallback={<Loading />}>
+            <SubCategoriesIndex />
+          </Suspense>
+        }
+      /> */}
       <Route path="/*" element={<ErrorPage />} />
     </Routes>
   );

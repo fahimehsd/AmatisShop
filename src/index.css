@@ -52,11 +52,28 @@ section {
 .link {
   text-decoration: 0;
 }
+.amatis {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(68, 17, 87, 0.078);
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(68, 17, 87, 0.614);
+  padding: 10px;
+}
+.border-img {
+  border: 1px solid rgba(68, 17, 87, 0.614);
+}
+.text {
+  color: rgba(68, 17, 87, 0.831);
+  margin-left: 10px;
+}
 .home-bg {
   background-color: rgba(68, 17, 87, 0.078);
   padding-inline: 1.5rem;
   height: 100vh;
 }
+
 .home-footer {
   background-color: rgba(68, 17, 87, 0.078);
   padding-inline: 15rem;
@@ -136,4 +153,29 @@ section {
   border: 0;
   margin-top: 2rem;
   background-color: rgba(155, 12, 88, 0.667);
+}
+.tabs {
+  display: flex;
+}
+.tab {
+  background: rgba(68, 17, 87, 0.333);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+}
+
+.tab:hover {
+  background-color: rgba(68, 17, 87, 0.149);
+  font-weight: bold;
+}
+.panel {
+  display: none;
+  background-color: rgba(68, 17, 87, 0.149);
+  padding: 10px;
+  height: 100vh;
+}
+.bg {
+  background-color: rgba(68, 17, 87, 0.049);
 }

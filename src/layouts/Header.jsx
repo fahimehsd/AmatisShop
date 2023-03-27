@@ -107,7 +107,7 @@ const Header = () => {
               viewBox="0 0 902.86 902.86"
               stroke="rgb(112,26,117)"
             >
-              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+              <g id="SVGRepo_bgCarrier" strokeWidth="0" />
 
               <g
                 id="SVGRepo_tracerCarrier"
