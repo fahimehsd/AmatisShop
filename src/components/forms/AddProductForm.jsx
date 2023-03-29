@@ -149,6 +149,15 @@ const AddProductForm = ({ setShowModal }) => {
                         </select>
                       </div>
                     </div>
+                    <div className="mt-2 flex flex-col items-center">
+                      <label htmlFor="brand">Product's Brand</label>
+                      <input
+                        type="text"
+                        name="brand"
+                        {...register("brand")}
+                        className="border-[1px] border-solid border-fuchsia-900 rounded-md w-[12rem] "
+                      />
+                    </div>
                     <div className="flex justify-between mt-3">
                       <div className="flex flex-col items-center">
                         <label htmlFor="price">Product's Price</label>
@@ -160,12 +169,12 @@ const AddProductForm = ({ setShowModal }) => {
                         />
                       </div>
                       <div className="flex flex-col items-center">
-                        <label htmlFor="brand">Product's Brand</label>
+                        <label htmlFor="quantity">Product's Quantity</label>
                         <input
-                          type="text"
-                          name="brand"
-                          {...register("brand")}
-                          className="border-[1px] border-solid border-fuchsia-900 rounded-md w-[12rem] "
+                          type="number"
+                          name="quantity"
+                          {...register("quantity")}
+                          className="border-[1px] border-solid border-fuchsia-900 rounded-md w-[12rem]"
                         />
                       </div>
                     </div>
