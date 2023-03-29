@@ -14,6 +14,7 @@ const DeleteProductModal = ({ item, setShowModal }) => {
       .then((res) => console.log(res.data));
     setPosts(posts.filter((i) => i.id !== item.id));
     setShowModal(false);
+    window.location.reload();
   };
   return (
     <>

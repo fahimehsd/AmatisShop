@@ -19,10 +19,44 @@ const AddProductForm = ({ setShowModal }) => {
   }, []);
 
   const { register, handleSubmit } = useForm({});
-  const handleRegistration = (data) => {
-    instance.post("/products", data).then((res) => console.log(res.data));
-    setShowModal(false);
+
+  const upload = async (img) => {
+    let formData = new FormData();
+    formData.append("image", img);
+    const res = await instance.post("/upload", formData, {
+      headers: { image: "multipart/form-data" }
+    });
+    return res.data.filename;
   };
+  const handleRegistration = async (data) => {
+    const thumbnail = await upload(data.thumbnail[0]);
+    let images = [];
+    for (let i = 0; i < data.image.length; i++) {
+      const element = await upload(data.image[i]);
+      images.push(element);
+    }
+
+    const newProduct = {
+      name: data.name,
+      brand: data.brand,
+      image: images,
+      thumbnail: thumbnail,
+      price: data.price,
+      quantity: data.quantity,
+      category: data.category,
+      subcategory: data.subcategory,
+      description: data.description
+    };
+    console.log(newProduct);
+    instance.post("/products", newProduct).then((res) => console.log(res.data));
+    setShowModal(false);
+    window.location.reload();
+  };
+  const [files, setFiles] = useState();
+  function handleChange(e) {
+    // console.log(e.target.files);
+    setFiles(URL.createObjectURL(e.target.files[0]));
+  }
 
   return (
     <>
@@ -42,12 +76,23 @@ const AddProductForm = ({ setShowModal }) => {
                 <div>
                   <form onSubmit={handleSubmit(handleRegistration)}>
                     <div className="mt-3">
+                      <label htmlFor="thumbnail">Product's Cover</label>
+                      <input
+                        type="file"
+                        {...register("thumbnail")}
+                        required
+                        onChange={handleChange}
+                        className="border-[1px] border-solid border-fuchsia-900 rounded-md"
+                      />
+                    </div>
+                    <div className="mt-3">
                       <label htmlFor="image">Product's Images</label>
                       <input
                         type="file"
                         {...register("image")}
                         required
                         multiple
+                        onChange={handleChange}
                         className="border-[1px] border-solid border-fuchsia-900 rounded-md"
                       />
                     </div>

@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { instance } from "../api";
 import PanelHeader from "../layouts/PanelHeader";
 import { urlReq } from "../utils/api.util";
 
 const Panel = () => {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [admin, setAdmin] = useState("");
+  // useEffect(() => {
+  //   instance.get("/whoami").then((res) => setAdmin(res.data));
+  // });
   useEffect(() => {
     urlReq("products").then((res) => setProducts(res.data));
   }, []);
@@ -20,7 +25,7 @@ const Panel = () => {
       <div className=" h-screen m-3 grid grid-rows-3 grid-col-3 gap-4 rounded-md p-5 col-span-4  bg-pink-50 border-[1px] border-fuchsia-900">
         <div className=" bg-gray-200 rounded-md shadow-lg p-5  border-[1px] border-fuchsia-900 ">
           <h2 className=" text-fuchsia-900">Management Panel</h2>
-          <h5 className=" text-gray-500">Welcome {"Fahimeh Sadeghi"}</h5>
+          <h5 className=" text-gray-500">Welcome {admin.name}</h5>
         </div>
         <div className="col-start-2 col-span-2 row-span-3 bg-gray-200  shadow-lg rounded-md p-5 border-[1px] border-fuchsia-900">
           <div className="grid ">

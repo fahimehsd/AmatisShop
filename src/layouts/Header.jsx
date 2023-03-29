@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { instance } from "../api";
 
 const Header = () => {
-  useEffect(() => {
-    instance.get("/protection").then((res) => {
-      console.log(res);
-    });
-  }, []);
+  // useEffect(() => {
+  //   instance.get("/protection").then((res) => {
+  //     console.log(res);
+  //   });
+  // }, []);
 
   return (
     <div className=" bg-transparent border-b border-gray-500 p-3">

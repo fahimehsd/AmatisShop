@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import SubcategoryHeader from "../../layouts/SubcategoryHeader";
 import HomePageFooter from "../../layouts/HomePageFooter";
+import { baseURL } from "../../api/constants";
 
 const ProductInfo = () => {
   const location = useLocation();
@@ -38,7 +39,7 @@ const ProductInfo = () => {
                   <SwiperSlide>
                     <div className=" bg-white">
                       <img
-                        src={image}
+                        src={`${baseURL}/files/${image}`}
                         alt="pic"
                         className="w-[30rem] p-4 mb-5 rounded-lg mx-auto"
                       />

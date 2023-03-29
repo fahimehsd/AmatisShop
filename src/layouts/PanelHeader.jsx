@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { instance } from "../api";
 const PanelHeader = () => {
+  const [admin, setAdmin] = useState("");
+  // useEffect(() => {
+  //   instance.get("/whoami").then((res) => setAdmin(res.data));
+  // });
   return (
     <div className="sticky px-5 py-3 text-gray-600">
       <div className="flex flex-col items-center ">
@@ -95,7 +100,7 @@ const PanelHeader = () => {
             </g>
           </svg>
         </div>
-        <h5>{"Fahimeh Sadeghi"}</h5>
+        <h5>{admin.name}</h5>
         <p className=" text-gray-400 text-xs">Admin</p>
       </div>
       <div className=" py-3">

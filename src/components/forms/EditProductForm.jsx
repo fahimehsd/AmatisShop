@@ -19,10 +19,48 @@ const EditProductForm = ({ item, setShowModal }) => {
       .catch((err) => console.log(err));
   }, []);
 
+  const upload = async (img) => {
+    let formData = new FormData();
+    formData.append("image", img);
+    const res = await instance.post("/upload", formData, {
+      headers: { image: "multipart/form-data" }
+    });
+    return res.data.filename;
+  };
   const { register, handleSubmit, reset } = useForm({});
+
   const handleRegistration = async (data) => {
-    await instance.get("/products", data).then((res) => console.log(res.data));
+    let thumbnail = await upload(data.thumbnail[0]);
+    let images = [];
+    for (let i = 0; i < data.image.length; i++) {
+      const element = await upload(data.image[i]);
+      images.push(element);
+    }
+    if (!thumbnail) {
+      thumbnail = item.thumbnail;
+    }
+    if (images.length === 0) {
+      images = item.image;
+    }
+
+    const editedProduct = {
+      name: data.name,
+      brand: data.brand,
+      image: images,
+      thumbnail: thumbnail,
+      price: data.price,
+      quantity: data.quantity,
+      category: data.category,
+      subcategory: data.subcategory,
+      description: data.description
+    };
+    console.log(editedProduct);
+
+    instance
+      .patch(`/products/${item.id}`, editedProduct)
+      .then((res) => console.log(res.data));
     setShowModal(false);
+    window.location.reload();
   };
 
   const resetAsyncForm = useCallback(async () => {
@@ -36,11 +74,11 @@ const EditProductForm = ({ item, setShowModal }) => {
     resetAsyncForm();
   }, [resetAsyncForm]);
 
-  const [newImage, setNewImage] = useState([item.image]);
-  const [newName, setNewName] = useState(item.name);
-  const [newCategory, setNewCategory] = useState(item.category);
-  const [newSubcategory, setNewSubcategory] = useState(item.subcategory);
-  const [newDescription, setNewDescription] = useState(item.description);
+  // const [newImage, setNewImage] = useState([item.image]);
+  // const [newName, setNewName] = useState();
+  // const [newCategory, setNewCategory] = useState(item.category);
+  // const [newSubcategory, setNewSubcategory] = useState(item.subcategory);
+  // const [newDescription, setNewDescription] = useState(item.description);
 
   return (
     <>
@@ -62,11 +100,19 @@ const EditProductForm = ({ item, setShowModal }) => {
                 <div>
                   <form onSubmit={handleSubmit(handleRegistration)}>
                     <div className="mt-3">
+                      <label htmlFor="thumbnail">Product's Cover</label>
+                      <input
+                        type="file"
+                        {...register("thumbnail")}
+                        multiple
+                        className="border-[1px] border-solid border-fuchsia-900 rounded-md"
+                      />
+                    </div>
+                    <div className="mt-3">
                       <label htmlFor="image">Product's Images</label>
                       <input
                         type="file"
                         {...register("image")}
-                        required
                         multiple
                         className="border-[1px] border-solid border-fuchsia-900 rounded-md"
                       />
@@ -76,7 +122,7 @@ const EditProductForm = ({ item, setShowModal }) => {
                       <input
                         type="text"
                         {...register("name")}
-                        value={newName}
+                        defaultValue={item.name}
                         required
                         className="border-[1px] border-solid border-fuchsia-900 rounded-md"
                       />
@@ -90,8 +136,8 @@ const EditProductForm = ({ item, setShowModal }) => {
                           {...register("category")}
                           required
                         >
-                          <option key={0} value={newCategory}>
-                            {newCategory}
+                          <option key={0} defaultValue={item.category}>
+                            {item.category}
                           </option>
                           {category.map((item) => {
                             return (
@@ -115,8 +161,8 @@ const EditProductForm = ({ item, setShowModal }) => {
                           {...register("subcategory")}
                           required
                         >
-                          <option key={0} value={newSubcategory}>
-                            {newSubcategory}
+                          <option key={0} defaultValue={item.subcategory}>
+                            {item.subcategory}
                           </option>
                           {subcategory.map((item) => {
                             return (
@@ -133,11 +179,22 @@ const EditProductForm = ({ item, setShowModal }) => {
                     </div>
                     <div className="flex justify-between mt-3">
                       <div className="flex flex-col items-center">
+                        <label htmlFor="quantity">Product's Quantity</label>
+                        <input
+                          type="number"
+                          name="quantity"
+                          {...register("quantity")}
+                          defaultValue={item.quantity}
+                          className="border-[1px] border-solid border-fuchsia-900 rounded-md w-[12rem]"
+                        />
+                      </div>
+                      <div className="flex flex-col items-center">
                         <label htmlFor="price">Product's Price</label>
                         <input
                           type="number"
                           name="price"
-                          value={item.price}
+                          {...register("price")}
+                          defaultValue={item.price}
                           className="border-[1px] border-solid border-fuchsia-900 rounded-md w-[12rem]"
                         />
                       </div>
@@ -146,7 +203,8 @@ const EditProductForm = ({ item, setShowModal }) => {
                         <input
                           type="text"
                           name="brand"
-                          value={item.brand}
+                          {...register("brand")}
+                          defaultValue={item.brand}
                           className="border-[1px] border-solid border-fuchsia-900 rounded-md w-[12rem] "
                         />
                       </div>
@@ -157,7 +215,7 @@ const EditProductForm = ({ item, setShowModal }) => {
                         className="p-2 border-[1px] border-solid border-fuchsia-900 rounded-md"
                         name="description"
                         rows="4"
-                        defaultValue={newDescription}
+                        defaultValue={item.description}
                         {...register("description")}
                         required
                       ></textarea>

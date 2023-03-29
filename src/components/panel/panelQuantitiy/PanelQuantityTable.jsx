@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Loading from "../../../loading/Loading";
 import { BASE_URL } from "../../../sample_front/configs/variables.config";
+import PanelQuantityEdit from "./PanelQuantityEdit";
 
 const PanelQuantityTable = () => {
   const [products, setProducts] = useState([]);
@@ -21,7 +23,12 @@ const PanelQuantityTable = () => {
   const CurrentPosts = products.slice(IndexOfFirstPost, IndexOfLastPost);
 
   const PageNumbers = [];
-  const [quantity, setQuantity] = useState([]);
+  const [quantity, setQuantity] = useState("");
+
+  const handleChange = (event) => {
+    setQuantity(event.target.value);
+  };
+
   const quantityChangeHandler = (e) => {
     setQuantity(e.target.value);
   };
@@ -33,50 +40,20 @@ const PanelQuantityTable = () => {
         <div>
           <table className="mx-auto">
             <tr className=" border-b-4 border-gray-500">
-              <th className="p-4">Product's Count</th>
-              <th className="p-4">Product's Name</th>
-              <th className="p-4">Product's Price</th>
-              <th className="p-4">Product's Quantity</th>
+              <th className="px-4">Product's Count</th>
+              <th className="px-4">Product's Name</th>
+              <th className="px-4">Product's Price</th>
+              <th className="px-4">Product's Quantity</th>
             </tr>
             {CurrentPosts.map((product) => {
               return (
                 <tr key={product.id} className="tr">
                   <td className="p-4">{product.id}</td>
                   <td>{product.name}</td>
+                  <td>{product.price}</td>
+                  <td>{product.quantity}</td>
                   <td>
-                    <input
-                      type="number"
-                      value={product.price}
-                      className="input"
-                    />
-                  </td>
-                  <td className="flex justify-center">
-                    <input
-                      type="number"
-                      placeholder={product.quantity}
-                      value={quantity}
-                      onChange={quantityChangeHandler}
-                      className="input placeholder:text-gray-600"
-                    />
-                  </td>
-                  <td>
-                    <button>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="30px"
-                        height="30px"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M12 20H20.5M18 10L21 7L17 3L14 6M18 10L8 20H4V16L14 6M18 10L14 6"
-                          stroke="gray"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
+                    <PanelQuantityEdit {...product} />
                   </td>
                 </tr>
               );
@@ -126,7 +103,7 @@ const PanelQuantityTable = () => {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
     </>
   );

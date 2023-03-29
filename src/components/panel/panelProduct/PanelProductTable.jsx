@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../../../sample_front/configs/variables.config";
 import PanelProductDelete from "./PanelProductDelete";
 import PanelProductEditModal from "./PanelProductEditModal";
-
+import { baseURL } from "../../../api/constants";
 function PanelProductTable() {
   const [Post, setPost] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -46,7 +46,9 @@ function PanelProductTable() {
                     <td className="flex justify-center">
                       <img
                         className="w-20 h-26 bg-white my-3 p-2 "
-                        src={item.image[0]}
+                        src={
+                          item.thumbnail && `${baseURL}/files/${item.thumbnail}`
+                        }
                         alt="pic"
                       />
                     </td>
