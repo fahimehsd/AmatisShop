@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { urlReq } from "../../../utils/api.util";
+import PanelOrdersDetails from "./PanelOrdersDetails";
 import PanelOrdersTableDelivered from "./PanelOrdersTableDelivered";
 import PanelOrdersTablePending from "./PanelOrdersTablePending";
 
@@ -36,18 +37,22 @@ const PanelOrdersTable = () => {
         </td>
         <td>{order.expectAt}</td>
         <td>
-          <button>Details</button>
+          <PanelOrdersDetails order={order} />
         </td>
       </tr>
     ));
   };
   const [isChecked, setIsChecked] = useState(false);
+  const [PendingIsChecked, SetPendingIsChecked] = useState(false);
+
   const checkHandler = () => {
     setIsChecked(!isChecked);
+    SetPendingIsChecked(false);
   };
-  const [PendingIsChecked, SetPendingIsChecked] = useState(false);
+
   const pendingCheckHandler = () => {
     SetPendingIsChecked(!PendingIsChecked);
+    setIsChecked(false);
   };
 
   return (

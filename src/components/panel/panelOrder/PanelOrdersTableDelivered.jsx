@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { urlReq } from "../../../utils/api.util";
+import PanelOrdersDetails from "./PanelOrdersDetails";
 import PanelOrdersTable from "./PanelOrdersTable";
 
 const PanelOrdersTableDelivered = () => {
@@ -33,7 +34,7 @@ const PanelOrdersTableDelivered = () => {
         </td>
         <td>{order.expectAt}</td>
         <td>
-          <button>Details</button>
+          <PanelOrdersDetails order={order} />
         </td>
       </tr>
     ));

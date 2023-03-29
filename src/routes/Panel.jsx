@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { instance } from "../api";
+import { baseURL, instance } from "../api";
 import PanelHeader from "../layouts/PanelHeader";
 import { urlReq } from "../utils/api.util";
 
@@ -38,7 +38,7 @@ const Panel = () => {
                         <div key={product.id} className="flex gap-1 ">
                           <div>
                             <img
-                              src={product.image[0]}
+                              src={`${baseURL}/files/${product.thumbnail}`}
                               className="w-[3rem] h-[3rem] bg-white shadow-md rounded-full p-1"
                               alt="pic"
                             />

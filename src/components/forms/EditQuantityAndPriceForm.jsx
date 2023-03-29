@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { instance } from "../../api/constants";
 
 const EditQuantityAndPriceForm = ({ product, setShowModal }) => {
-  console.log(product);
   const { register, handleSubmit } = useForm({});
   const handleRegistration = async (data) => {
     const editedProduct = {
