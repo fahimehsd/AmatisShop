@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { instance } from "../../api";
+import { baseURL, instance } from "../../api";
 
 const SubCategoriesProducts = ({ categoryName }) => {
   console.log(categoryName);
@@ -24,7 +24,7 @@ const SubCategoriesProducts = ({ categoryName }) => {
             className="link text-gray-800 flex flex-col items-center"
           >
             <img
-              src={item.image[0]}
+              src={`${baseURL}/files/${item.thumbnail}`}
               alt="pic"
               className=" border-img w-[12rem] h-[12rem] p-3 mb-3 rounded-md bg-white"
             />
