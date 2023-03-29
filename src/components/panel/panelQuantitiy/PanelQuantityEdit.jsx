@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import EditQuantityAndPriceForm from "../../forms/EditQuantityAndPriceForm";
 
 const PanelQuantityEdit = ({ product }) => {
-  console.log(product);
   const [showModal, setShowModal] = useState(false);
   return (
     <>
@@ -23,7 +22,12 @@ const PanelQuantityEdit = ({ product }) => {
           />
         </svg>
       </button>
-      {showModal && <EditQuantityAndPriceForm />}
+      {showModal && (
+        <EditQuantityAndPriceForm
+          product={product}
+          setShowModal={setShowModal}
+        />
+      )}
     </>
   );
 };

@@ -53,7 +53,7 @@ const PanelQuantityTable = () => {
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
                   <td>
-                    <PanelQuantityEdit {...product} />
+                    <PanelQuantityEdit product={product} />
                   </td>
                 </tr>
               );
