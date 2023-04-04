@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { cartTotalSelector } from "../app/slices/cart/selectors";
 const SubcategoryHeader = () => {
   const { categoryName } = useParams();
+  const total = useSelector(cartTotalSelector);
   return (
     <>
       <div className="amatis">
@@ -61,7 +63,9 @@ const SubcategoryHeader = () => {
                 </g>{" "}
               </g>
             </svg>
-            <h3 className="m-2">Cart</h3>
+            <Link to={"/basket"} className="link text-gray-700">
+              <h3 className="m-2">Cart({total})</h3>
+            </Link>
           </div>
         </div>
       </div>

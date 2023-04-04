@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { instance } from "../../../api";
 import { urlReq } from "../../../utils/api.util";
 import PanelOrdersDetails from "./PanelOrdersDetails";
 import PanelOrdersTable from "./PanelOrdersTable";
@@ -9,7 +10,7 @@ const PanelOrdersTablePending = () => {
   const [PostPerPage, setPostPerPage] = useState(5);
 
   useEffect(() => {
-    urlReq("orders?delivered=false").then((res) => setOrder(res.data));
+    instance.get("orders?delivered=false").then((res) => setOrder(res.data));
   }, []);
 
   const IndexOfLastPost = currentPage * PostPerPage;
@@ -27,11 +28,7 @@ const PanelOrdersTablePending = () => {
         <td>
           {order.username}-{order.lastname}
         </td>
-        <td>
-          {order.products.map((item) => {
-            return item.price;
-          })}
-        </td>
+        <td>${order.prices}</td>
         <td>{order.expectAt}</td>
         <td>
           <PanelOrdersDetails order={order} />

@@ -6,7 +6,7 @@ const DeleteProductModal = ({ item, setShowModal }) => {
 
   useEffect(() => {
     instance.get("/products").then((res) => setPosts(res.data));
-  });
+  }, []);
 
   const deleteHandler = () => {
     instance

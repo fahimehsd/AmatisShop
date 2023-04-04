@@ -16,6 +16,8 @@ import ProductInfo from "./components/productInfo/ProductInfo";
 import BrandsCategory from "./components/categories/brands/BrandsCategory";
 import BrandsProducts from "./components/categories/brands/BrandsProducts";
 import EachBrandsProducts from "./components/categories/brands/EachBrandsProducts";
+import Basket from "./components/cart/Basket";
+import CheckOut from "./components/cart/CheckOut";
 
 const MainPage = lazy(() => import("./routes/MainPage"));
 
@@ -115,14 +117,6 @@ const App = () => {
           </Suspense>
         }
       />
-      {/* <Route
-        path="/category"
-        element={
-          <Suspense fallback={<Loading />}>
-            <SubCategoriesIndex />
-          </Suspense>
-        }
-      /> */}
       <Route
         path="/category/:categoryName"
         element={
@@ -140,6 +134,14 @@ const App = () => {
         }
       />
       <Route
+        path="/products/:name"
+        element={
+          <Suspense fallback={<Loading />}>
+            <ProductInfo />
+          </Suspense>
+        }
+      />
+      <Route
         path="/products/:categoryName/:name"
         element={
           <Suspense fallback={<Loading />}>
@@ -148,22 +150,21 @@ const App = () => {
         }
       />
       <Route
-        path="/products/:name"
+        path="/basket"
         element={
           <Suspense fallback={<Loading />}>
-            <ProductInfo />
+            <Basket />
           </Suspense>
         }
       />
-
-      {/* <Route
-        path="/category/:categoryName/:subcategoryName"
+      <Route
+        path="/checkout"
         element={
           <Suspense fallback={<Loading />}>
-            <SubCategoriesIndex />
+            <CheckOut />
           </Suspense>
         }
-      /> */}
+      />
       <Route path="/*" element={<ErrorPage />} />
     </Routes>
   );

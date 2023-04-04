@@ -27,11 +27,7 @@ const PanelOrdersTableDelivered = () => {
         <td>
           {order.username}-{order.lastname}
         </td>
-        <td>
-          {order.products.map((item) => {
-            return item.price;
-          })}
-        </td>
+        <td>${order.prices}</td>
         <td>{order.expectAt}</td>
         <td>
           <PanelOrdersDetails order={order} />

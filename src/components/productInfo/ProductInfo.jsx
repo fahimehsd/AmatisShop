@@ -9,11 +9,14 @@ import "swiper/css/scrollbar";
 import SubcategoryHeader from "../../layouts/SubcategoryHeader";
 import HomePageFooter from "../../layouts/HomePageFooter";
 import { baseURL } from "../../api/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../app/slices/cart/cartSlice";
 
 const ProductInfo = () => {
+  const dispatch = useDispatch();
+
   const location = useLocation();
   const { from } = location.state;
-  console.log(from);
   const images = from.image;
 
   return (
@@ -56,7 +59,10 @@ const ProductInfo = () => {
             <h4>{from.name}</h4>
             <h6 className="font-bold">${from.price}</h6>
             <p>{from.quantity} in stock</p>
-            <button className="border bg-pro p-3 rounded-full w-full mt-4 shadow-md hover:-translate-y-1 hover:scale-110 hover:bg-[#4d106364] hover:text-white duration-300">
+            <button
+              onClick={() => dispatch(addToCart(from))}
+              className="border bg-pro p-3 rounded-full w-full mt-4 shadow-md hover:-translate-y-1 hover:scale-110 hover:bg-[#4d106364] hover:text-white duration-300"
+            >
               Add To Cart
             </button>
           </div>

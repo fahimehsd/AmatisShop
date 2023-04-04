@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { instance } from "../api";
+import { cartTotalSelector } from "../app/slices/cart/selectors";
 
 const BrandsHeader = () => {
+  const total = useSelector(cartTotalSelector);
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -72,7 +75,9 @@ const BrandsHeader = () => {
                 </g>{" "}
               </g>
             </svg>
-            <h3 className="m-2">Cart</h3>
+            <Link to={"/basket"} className="link text-gray-700">
+              <h3 className="m-2">Cart({total})</h3>
+            </Link>
           </div>
         </div>
       </div>

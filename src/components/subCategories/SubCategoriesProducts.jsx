@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { baseURL, instance } from "../../api";
+import { addToCart } from "../../app/slices/cart/cartSlice";
 
 const SubCategoriesProducts = ({ categoryName }) => {
-  console.log(categoryName);
+  const dispatch = useDispatch();
+
   const [products, setProducts] = useState([]);
   useEffect(() => {
     instance
       .get(`/products?category=${categoryName.toLocaleLowerCase()}`)
       .then((res) => setProducts(res.data));
   }, [categoryName]);
-  console.log(products);
+
   const product = () => {
     return products.map((item) => {
       return (
@@ -31,7 +34,10 @@ const SubCategoriesProducts = ({ categoryName }) => {
             <p className="text-gray-800 font-bold truncate">{item.name}</p>
             <p className="text-gray-600 ">${item.price}</p>
           </Link>
-          <button className="bg-white p-3 rounded-md w-full border-img">
+          <button
+            onClick={() => dispatch(addToCart(item))}
+            className="bg-white p-3 rounded-md w-full border-img"
+          >
             Add To Cart
           </button>
         </div>

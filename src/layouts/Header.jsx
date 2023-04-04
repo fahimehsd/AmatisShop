@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { instance } from "../api";
+import { cartTotalSelector } from "../app/slices/cart/selectors";
 
 const Header = () => {
   // useEffect(() => {
@@ -8,7 +11,7 @@ const Header = () => {
   //     console.log(res);
   //   });
   // }, []);
-
+  const total = useSelector(cartTotalSelector);
   return (
     <div className=" bg-transparent border-b border-gray-500 p-3">
       <div className=" flex flex-wrap items-center justify-between mx-auto">
@@ -124,7 +127,9 @@ const Header = () => {
                 </g>{" "}
               </g>
             </svg>
-            <h3 className="m-2">Cart</h3>
+            <Link to={"/basket"} className="link text-gray-500">
+              <h3 className="m-2">Cart({total})</h3>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { baseURL, instance } from "../../api";
+import { addToCart } from "../../app/slices/cart/cartSlice";
 
 const SubCategories = ({ categoryName, subcategoryName }) => {
+  const { items } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
   const [products, setProducts] = useState([]);
   useEffect(() => {
     instance
@@ -32,7 +37,10 @@ const SubCategories = ({ categoryName, subcategoryName }) => {
             <p className="text-gray-800 font-bold truncate">{item.name}</p>
             <p className="text-gray-600 ">${item.price}</p>
           </Link>
-          <button className="bg-white p-3 rounded-md w-full border-img">
+          <button
+            onClick={() => dispatch(addToCart(item))}
+            className="bg-white p-3 rounded-md w-full border-img"
+          >
             Add To Cart
           </button>
         </div>

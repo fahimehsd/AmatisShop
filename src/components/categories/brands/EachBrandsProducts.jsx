@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { baseURL, instance } from "../../../api";
+import { addToCart } from "../../../app/slices/cart/cartSlice";
 import BrandsHeader from "../../../layouts/BrandsHeader";
 
 const EachBrandsProducts = () => {
+  const dispatch = useDispatch();
+
   const { brandsName } = useParams();
   const [brandProducts, setBrandProducts] = useState([]);
   useEffect(() => {
     instance
       .get(`/products?brand=${brandsName}`)
       .then((res) => setBrandProducts(res.data));
-  });
+  }, [brandsName]);
 
   const product = () => {
     return brandProducts.map((item) => {
@@ -32,7 +36,10 @@ const EachBrandsProducts = () => {
             <p className="text-gray-800 font-bold truncate">{item.name}</p>
             <p className="text-gray-600 ">${item.price}</p>
           </Link>
-          <button className="bg-white p-3 rounded-md w-full border-img">
+          <button
+            onClick={() => dispatch(addToCart(item))}
+            className="bg-white p-3 rounded-md w-full border-img"
+          >
             Add To Cart
           </button>
         </div>

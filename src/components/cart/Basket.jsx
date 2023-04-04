@@ -1,7 +1,16 @@
 import React from "react";
-
+import CartHeader from "../../layouts/CartHeader";
+import ShoppingCart from "./ShoppingCart";
+import { useSelector } from "react-redux";
 const Basket = () => {
-  return <div>Basket</div>;
+  const items = useSelector((state) => state.cart);
+
+  return (
+    <div>
+      <CartHeader />
+      <ShoppingCart items={items} />
+    </div>
+  );
 };
 
 export default Basket;
