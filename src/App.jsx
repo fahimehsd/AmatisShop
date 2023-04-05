@@ -18,6 +18,9 @@ import BrandsProducts from "./components/categories/brands/BrandsProducts";
 import EachBrandsProducts from "./components/categories/brands/EachBrandsProducts";
 import Basket from "./components/cart/Basket";
 import CheckOut from "./components/cart/CheckOut";
+import Payment from "./components/cart/payment/Payment";
+import PaymentResultFail from "./components/cart/payment/PaymentResultFail";
+import PaymentResultSuccess from "./components/cart/payment/PaymentResultSuccess";
 
 const MainPage = lazy(() => import("./routes/MainPage"));
 
@@ -162,6 +165,30 @@ const App = () => {
         element={
           <Suspense fallback={<Loading />}>
             <CheckOut />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/payment"
+        element={
+          <Suspense fallback={<Loading />}>
+            <Payment />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/payment/failure"
+        element={
+          <Suspense fallback={<Loading />}>
+            <PaymentResultFail />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/payment/success/:orderId"
+        element={
+          <Suspense fallback={<Loading />}>
+            <PaymentResultSuccess />
           </Suspense>
         }
       />
