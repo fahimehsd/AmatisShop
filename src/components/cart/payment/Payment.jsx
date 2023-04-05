@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { instance } from "../../../api";
@@ -8,13 +8,15 @@ export default function Payment() {
   cart = JSON.parse(cart);
   let order = localStorage.getItem("orderInfo");
   order = JSON.parse(order);
-  const [id, setId] = useState([]);
+  const [id, setId] = useState();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+
   const paymentHandler = async () => {
-    await instance.post("/orders", order).then((res) => setId(res.data));
-    let lastElement = id[id.length - 1];
-    navigate(`/payment/success/${lastElement.id}`);
+    const newOrder = await instance
+      .post("/orders", order)
+      .then((res) => res.data);
+    navigate(`/payment/success/${newOrder.id}`);
   };
 
   return (
