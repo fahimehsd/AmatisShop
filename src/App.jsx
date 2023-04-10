@@ -4,7 +4,6 @@ import React, { Suspense, lazy, useEffect } from "react";
 import "./index.css";
 import Loading from "./loading/Loading";
 import ErrorPage from "./error-page";
-
 import PanelLogIn from "./components/panel/PanelLogIn";
 import Panel from "./routes/Panel";
 import PanelProduct from "./components/panel/panelProduct/PanelProduct";

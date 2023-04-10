@@ -4,19 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { cartTotalPriceSelector } from "../../app/slices/cart/selectors";
 import { decrement, increment } from "../../app/slices/cart/cartSlice";
+import { clear } from "../../app/slices/cart/cartSlice";
 
 const ShoppingCart = ({ items }) => {
   const dispatch = useDispatch();
   const totalPrice = useSelector(cartTotalPriceSelector);
 
   const navigate = useNavigate();
-
+  const [item, setItem] = useState(items);
   const checkout = () => {
     navigate("/checkout", {
       state: {
         items
       }
     });
+  };
+  const cartItemDeleteHandler = (id) => {
+    const newItem = item.filter((_, i) => i !== id);
+    setItem(newItem);
   };
   return (
     <div className="flex m-10">
@@ -30,10 +35,11 @@ const ShoppingCart = ({ items }) => {
                 <th>QUANTITY</th>
                 <th className="px-5">PRICE</th>
                 <th className="px-5">TOTAL</th>
+                <th>DELETE</th>
               </tr>
             </thead>
             <tbody>
-              {items.map((item) => {
+              {item.map((item, i) => {
                 return (
                   <tr className="border-b">
                     <Link
@@ -80,6 +86,31 @@ const ShoppingCart = ({ items }) => {
                     </td>
                     <td className="px-5">${item.price}</td>
                     <td className="px-5">${item.quantity * item.price}</td>
+                    <td>
+                      <div onClick={() => cartItemDeleteHandler(i)}>
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                          <g
+                            id="SVGRepo_tracerCarrier"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          ></g>
+                          <g id="SVGRepo_iconCarrier">
+                            <path
+                              d="M16 9L13.0001 11.9999M13.0001 11.9999L10 15M13.0001 11.9999L10.0002 9M13.0001 11.9999L16.0002 15M8 6H19C19.5523 6 20 6.44772 20 7V17C20 17.5523 19.5523 18 19 18H8L2 12L8 6Z"
+                              stroke="#6b6b6b"
+                              stroke-width="0.72"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            ></path>
+                          </g>
+                        </svg>
+                      </div>
+                    </td>
                   </tr>
                 );
               })}

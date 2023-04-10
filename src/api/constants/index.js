@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 
 export const baseURL = `http://localhost:3002`;
 

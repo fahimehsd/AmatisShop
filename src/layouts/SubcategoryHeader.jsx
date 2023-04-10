@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { cartTotalSelector } from "../app/slices/cart/selectors";
 const SubcategoryHeader = () => {
   const { categoryName } = useParams();
-  const total = useSelector(cartTotalSelector);
+  const items = useSelector((state) => state.cart);
   return (
     <>
       <div className="amatis">
@@ -64,7 +64,7 @@ const SubcategoryHeader = () => {
               </g>
             </svg>
             <Link to={"/basket"} className="link text-gray-700">
-              <h3 className="m-2">Cart({total})</h3>
+              <h3 className="m-2">Cart({items.length})</h3>
             </Link>
           </div>
         </div>

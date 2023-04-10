@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { cartTotalSelector } from "../app/slices/cart/selectors";
 
 const CartHeader = () => {
-  const total = useSelector(cartTotalSelector);
+  const items = useSelector((state) => state.cart);
   return (
     <div className="cart-header">
       <div className="flex items-center">
@@ -115,7 +115,7 @@ const CartHeader = () => {
             </g>
           </svg>
           <Link to={"/basket"} className="link text-gray-700">
-            <h3 className="m-2">Cart({total})</h3>
+            <h3 className="m-2">Cart({items.length})</h3>
           </Link>
         </div>
       </div>

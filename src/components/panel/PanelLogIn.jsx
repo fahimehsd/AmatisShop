@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { loginService } from "../../api";
-import bg from "../../assets/login.jpg";
+
 const signInSchema = Yup.object().shape({
   username: Yup.string().required("Username is required."),
   password: Yup.string()

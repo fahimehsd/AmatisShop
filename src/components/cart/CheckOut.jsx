@@ -17,7 +17,7 @@ import AwesomeSlider from "react-awesome-slider";
 export default function CheckOut() {
   const { state } = useLocation();
   const total = useSelector(cartTotalPriceSelector);
-  const cartItems = useSelector(cartTotalSelector);
+  const cartItems = useSelector((state) => state.cart);
   const { register, handleSubmit } = useForm();
   const items = state.items;
   const cart = {
@@ -59,7 +59,7 @@ export default function CheckOut() {
   return (
     <div className="flex p-3 text-gray-500">
       <div>
-        <CheckoutHeader total={total} cartItems={cartItems} />
+        <CheckoutHeader total={total} cartItems={cartItems.length} />
         <div className="mt-10 px-16">
           <form onSubmit={handleSubmit(onSubmit)}>
             <h3 className="mb-5">How would you like to get your order?</h3>
