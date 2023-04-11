@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { instance } from "../api";
 import { cartTotalSelector } from "../app/slices/cart/selectors";
+import Search from "../search/Search";
 
 const BrandsHeader = () => {
   const items = useSelector((state) => state.cart);
@@ -24,29 +25,7 @@ const BrandsHeader = () => {
           <h1 className="text">AMATIS</h1>
         </Link>
         <div className="flex items-center">
-          <div className="relative mr-4 ">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                className="w-5 h-5 text-gray-700"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </div>
-            <input
-              type="text"
-              id="search-navbar"
-              className="block placeholder-gray-700 w-[11rem] bg-transparent pl-8 border-2 border-fuchsia-900 text-fuchsia-900 rounded-lg text-xs"
-              placeholder="what are you looking for?"
-            />
-          </div>
+          <Search />
           <div className="flex items-center text-gray-700 mr-12">
             <svg
               xmlns="http://www.w3.org/2000/svg"

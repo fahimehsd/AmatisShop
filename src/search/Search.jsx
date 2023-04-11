@@ -5,26 +5,16 @@ import { Link } from "react-router-dom";
 const Search = () => {
   const [products, setProducts] = useState([]);
   const [modal, setModal] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
+
   const [query, setQuery] = useState("");
 
   useEffect(() => {
     instance.get("/products").then((res) => setProducts(res.data));
   });
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-  };
-
-  if (searchInput.length > 0) {
-    products.filter((product) => {
-      return product.name.match(searchInput);
-    });
-  }
   return (
     <>
-      <div onClick={() => setModal(true)} className="relative ml-2 ">
+      <div onClick={() => setModal(true)} className="relative mr-2 ">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
             className="w-5 h-5 text-gray-500"
