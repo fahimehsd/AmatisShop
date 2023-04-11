@@ -41,7 +41,7 @@ const PanelOrdersTablePending = () => {
       <table className="mx-auto">
         <thead>
           <tr className="border-b-4 border-gray-500">
-            <th className="p-4">Order's Count</th>
+            <th className="p-4">Order's Code</th>
             <th className="p-4">Username</th>
             <th className="p-4">Total Amount</th>
             <th className="p-4">Order Registration Time</th>

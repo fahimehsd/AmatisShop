@@ -31,7 +31,7 @@ function PanelProductTable() {
           <table className="mx-auto">
             <thead>
               <tr className="border-b-4 border-gray-500">
-                <th className="p-4">Product's Count</th>
+                <th className="p-4">Product's Code</th>
                 <th className="p-4">Product's Picture</th>
                 <th className="p-4">Product's Name</th>
                 <th className="p-4">Product's Price</th>

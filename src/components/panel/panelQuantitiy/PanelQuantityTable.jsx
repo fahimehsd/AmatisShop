@@ -40,7 +40,7 @@ const PanelQuantityTable = () => {
         <div>
           <table className="mx-auto">
             <tr className=" border-b-4 border-gray-500">
-              <th className="px-4">Product's Count</th>
+              <th className="px-4">Product's Code</th>
               <th className="px-4">Product's Name</th>
               <th className="px-4">Product's Price</th>
               <th className="px-4">Product's Quantity</th>
