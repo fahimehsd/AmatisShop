@@ -1,101 +1,75 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-
 import { Link, useNavigate } from "react-router-dom";
+import { loginService } from "../../api";
 
 const signInSchema = Yup.object().shape({
-  username: Yup.string().required("نام کاربری الزامی است."),
+  username: Yup.string().required("Username is required."),
   password: Yup.string()
-    .required("رمز عبور الزامی است.")
-    .min(4, "رمز عبور کوتاه است!")
+    .required("Password is required.")
+    .min(4, "Password must be at least 4 characters.")
 });
-
-const initialValues = {
-  username: "",
-  password: ""
-};
 
 const PanelLogIn = () => {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(signInSchema)
+  });
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    navigate("/panel");
+  const onSubmit = async (data) => {
+    try {
+      const res = await loginService(data);
+      localStorage.setItem("token", res.accessToken);
+      localStorage.setItem("refresh_token", res.refreshToken);
+      navigate("/panel");
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   return (
-    <div className="w-[60%] mx-auto my-[150px] text-center p-4 shadow rounded-md">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={signInSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        {(formik) => {
-          const { errors, touched, isValid, dirty } = formik;
-          return (
-            <div>
-              <h1 className=" text-violet-900 font-semibold">
-                ورود به پنل مدیریت فروشگاه آماتیس
-              </h1>
-              <Form onSubmit={submitHandler}>
-                <div className="my-4">
-                  <Field
-                    type="text"
-                    name="username"
-                    id="username"
-                    placeholder="نام کاربری"
-                    className={
-                      errors.username && touched.username
-                        ? " border-red-900"
-                        : null
-                    }
-                  />
-                  <ErrorMessage
-                    name="username"
-                    component="span"
-                    className=" text-red-900 font-bold"
-                  />
-                </div>
+    <div className="login-bg flex items-center justify-center">
+      <div className="login relative flex flex-col justify-center p-5 text-center ">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1 className=" text-gray-100 font-bold mb-4">
+            Log In To Management Panel
+          </h1>
+          <input
+            {...register("username")}
+            placeholder="Username"
+            className={
+              errors.password ? "border-[1px] border-red-900" : "login-input"
+            }
+          />
+          <p className=" text-red-900 font-bold">{errors.username?.message}</p>
 
-                <div className="mb-4">
-                  <Field
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="رمز عبور"
-                    className={
-                      errors.password && touched.password
-                        ? " border-red-900"
-                        : null
-                    }
-                  />
-                  <ErrorMessage
-                    name="password"
-                    component="span"
-                    className="text-red-900 font-bold"
-                  />
-                </div>
+          <input
+            {...register("password")}
+            placeholder="Password"
+            className={
+              errors.password ? "border-[1px] border-red-900" : "login-input"
+            }
+          />
+          <p className=" text-red-900 font-bold">{errors.password?.message}</p>
 
-                <button
-                  type="submit"
-                  className="bg-violet-900 w-full rounded-[5px] text-white p-[0.5rem] text-2xl"
-                  disabled={!(dirty && isValid)}
-                >
-                  ورود
-                </button>
-              </Form>
-            </div>
-          );
-        }}
-      </Formik>
-      <Link
-        to={"/"}
-        className="flex justify-end mt-4 decoration-transparent text-2xl"
-      >
-        بازگشت به سایت
-      </Link>
+          <input
+            type="submit"
+            className="login-btn w-full rounded-[5px] text-white p-[0.5rem] text-2xl"
+          />
+        </form>
+        <Link
+          to={"/"}
+          className="flex text-gray-100 justify-center mt-4 decoration-transparent text-2xl"
+        >
+          Back to Home
+        </Link>
+      </div>
     </div>
   );
 };

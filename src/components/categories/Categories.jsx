@@ -1,10 +1,12 @@
 import React from "react";
-import Products from "./Products";
+import BrandsCategory from "./brands/BrandsCategory";
+import Category from "./Category";
 
 const Categories = () => {
   return (
-    <div>
-      <Products />
+    <div className="flex justify-center items-center bg-gray-100 mx-auto h-screen">
+      <BrandsCategory />
+      <Category />
     </div>
   );
 };
