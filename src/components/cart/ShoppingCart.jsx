@@ -8,7 +8,7 @@ import { clear } from "../../app/slices/cart/cartSlice";
 
 const ShoppingCart = ({ items }) => {
   const dispatch = useDispatch();
-  const totalPrice = useSelector(cartTotalPriceSelector);
+  let totalPrice = useSelector(cartTotalPriceSelector);
 
   const navigate = useNavigate();
   const [item, setItem] = useState(items);
@@ -20,7 +20,9 @@ const ShoppingCart = ({ items }) => {
     });
   };
   const cartItemDeleteHandler = (id) => {
+    console.log(id);
     const newItem = item.filter((_, i) => i !== id);
+    console.log(newItem);
     setItem(newItem);
   };
   return (
