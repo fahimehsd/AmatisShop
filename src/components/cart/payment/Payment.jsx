@@ -76,7 +76,7 @@ export default function Payment() {
       </div>
       <div className="bg border-[1px] border-fuchsia-900 p-4 w-[25rem] h-[30rem]">
         <div className="border-b border-fuchsia-900">
-          <h1 className=" text-center my-4">{cart.cartItems} items</h1>
+          {/* <h1 className=" text-center my-4">{cart.cartItems} items</h1> */}
           <div className="flex justify-between">
             <p className="text-gray-500">Subtotal</p>
             <p>${cart.total}</p>

@@ -8,9 +8,9 @@ const Search = () => {
 
   const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    instance.get("/products").then((res) => setProducts(res.data));
-  });
+  // useEffect(() => {
+  //   instance.get("/products").then((res) => setProducts(res.data));
+  // });
 
   return (
     <>
